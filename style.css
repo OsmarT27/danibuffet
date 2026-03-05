@@ -1,0 +1,112 @@
+/* Definição das cores baseadas na logo */
+:root {
+    --marrom-escuro: #5c1a1a; /* Tom vinho/marrom principal */
+    --laranja: #f37021;      /* Tom do detalhe da linha */
+    --branco: #ffffff;
+    --bege-claro: #fcf9f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bege-claro);
+    color: var(--marrom-escuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Estilo do Loading */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease;
+}
+
+.loader {
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid var(--laranja);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 15px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Conteúdo */
+.container {
+    padding: 20px;
+    max-width: 600px;
+}
+
+.logo {
+    width: 100%;
+    max-width: 400px; /* Ajuste conforme necessário */
+    height: auto;
+    margin-bottom: 30px;
+    animation: fadeIn 1.5s ease;
+}
+
+h1 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+p {
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    opacity: 0.8;
+}
+
+/* Botão Instagram */
+.btn-instagram {
+    display: inline-block;
+    background-color: var(--marrom-escuro);
+    color: var(--branco);
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.btn-instagram i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.btn-instagram:hover {
+    background-color: transparent;
+    color: var(--marrom-escuro);
+    border-color: var(--marrom-escuro);
+    transform: translateY(-3px);
+}
+
+/* Animação suave de entrada */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}

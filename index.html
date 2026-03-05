@@ -1,29 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dani Buffet - Em Construção</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-    <a href="https://www.instagram.com/dani.buffet.eventos/" id="openInsta">
-  Abrir Instagram (app / web)
-</a>
 
-<script>
-document.getElementById('openInsta').addEventListener('click', function(e) {
-  e.preventDefault();
-  const appUrl = 'instagram://user?username=dani.buffet.eventos'; // deep link para o app
-  const webUrl = this.href;
+    <div id="loading-screen">
+        <div class="loader"></div>
+        <p>Site em construção...</p>
+    </div>
 
-  // tenta abrir o app
-  window.location = appUrl;
+    <main class="container">
+        <img src="assets/Dani-Buffet-Logo.png" alt="Dani Buffet Logo" class="logo">
+        
+        <h1>Estamos preparando algo especial para você!</h1>
+        <p>Enquanto isso, acompanhe nossas novidades no Instagram.</p>
 
-  // se não abrir o app (por exemplo no desktop), abre a versão web após curto atraso
-  setTimeout(function() {
-    window.open(webUrl, '_blank', 'noopener'); 
-  }, 700);
-});
-</script>
+        <a href="https://www.instagram.com/SEU_USUARIO" target="_blank" class="btn-instagram">
+            <i class="fab fa-instagram"></i> Nosso Instagram
+        </a>
+    </main>
+
+    <script>
+        // Esconder o loading após o carregamento total da página
+        window.addEventListener('load', function() {
+            const loader = document.getElementById('loading-screen');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+    </script>
 </body>
 </html>
