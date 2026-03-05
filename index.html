@@ -1,0 +1,19 @@
+<a href="https://www.instagram.com/dani.buffet.eventos/" id="openInsta">
+  Abrir Instagram (app / web)
+</a>
+
+<script>
+document.getElementById('openInsta').addEventListener('click', function(e) {
+  e.preventDefault();
+  const appUrl = 'instagram://user?username=dani.buffet.eventos'; // deep link para o app
+  const webUrl = this.href;
+
+  // tenta abrir o app
+  window.location = appUrl;
+
+  // se não abrir o app (por exemplo no desktop), abre a versão web após curto atraso
+  setTimeout(function() {
+    window.open(webUrl, '_blank', 'noopener'); 
+  }, 700);
+});
+</script>
