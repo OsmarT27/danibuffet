@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite</title>
+    <style>
+        /* Remove as margens brancas da página */
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Evita barra de rolagem dupla */
+        }
+
+        /* Faz o PDF ocupar 100% da largura e altura disponível */
+        .pdf-nativo {
+            width: 100%;
+            height: 100vh; /* vh = viewport height (altura da tela) */
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+    <embed 
+        src="gift2.pdf" 
+        type="application/pdf" 
+        class="pdf-nativo"
+    />
+
+</body>
+</html>

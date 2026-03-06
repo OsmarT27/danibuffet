@@ -1,11 +1,211 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta http-equiv="refresh" content="0; cores.pdf">
-    <title>Redirecionando...</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convite Chá Revelação</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f9f4ee;
+            --gold-text: #b38b59;
+            --soft-brown: #8e735b;
+        }
+
+        body {
+            background-color: #e8e2db;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card {
+            background-color: var(--bg-color);
+            width: 420px;
+            padding: 50px 30px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+            /* Se você tiver uma imagem de fundo única com as manchas: */
+            /* background-image: url('assets/fundo_aquarela.png'); */
+            /* background-size: cover; */
+        }
+
+        /* Simulando as manchas de aquarela nas quinas via CSS caso não tenha imagem única */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -20px; left: -20px;
+            width: 150px; height: 150px;
+            background: radial-gradient(circle, rgba(179,139,89,0.15) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .card::after {
+            content: "";
+            position: absolute;
+            bottom: -30px; right: -30px;
+            width: 200px; height: 200px;
+            background: radial-gradient(circle, rgba(179,139,89,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .content { position: relative; z-index: 2; }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold-text);
+            font-size: 3.8rem;
+            margin: 0;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        .main-illustration {
+            width: 240px;
+            height: auto;
+            margin: 20px auto;
+            display: block;
+        }
+
+        p.intro {
+            color: var(--soft-brown);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            padding: 0 10px;
+            margin: 15px 0;
+        }
+
+        .names {
+            font-family: 'Great Vibes', cursive;
+            color: var(--gold-text);
+            font-size: 3.2rem;
+            margin: 15px 0;
+        }
+
+        .date-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 25px 0 10px;
+        }
+
+        .line {
+            height: 2px;
+            background-color: var(--gold-text);
+            width: 80px;
+        }
+
+        .date-text {
+            color: var(--gold-text);
+            font-weight: 400;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .day-big {
+            font-size: 3rem;
+            color: var(--gold-text);
+            font-family: 'Great Vibes', cursive;
+            margin: -10px 0;
+        }
+
+        .time {
+            color: var(--soft-brown);
+            font-size: 1.1rem;
+            margin-bottom: 40px;
+        }
+
+        .footer-icons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .icon-box {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            background-color: #c9ae8d;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+            /* Efeito de pincelada/aquarela opcional no ícone */
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .icon-circle img {
+            width: 28px;
+            filter: brightness(0) invert(1);
+        }
+
+        .icon-label {
+            font-size: 0.65rem;
+            color: var(--soft-brown);
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+    </style>
 </head>
 <body>
-    Se você não for redirecionado, <a href="cores.pdf">clique aqui</a>.
+
+    <div class="card">
+        <div class="content">
+            <h1>Chá Revelação</h1>
+            
+            <img src="assets/cheep.jpg" alt="Carneirinho no Balanço" class="main-illustration">
+
+            <p class="intro">Mamãe e Papai estão muitos felizes com a minha chegada e ansiosos para descobrirem se serei</p>
+            
+            <div class="names">Eugênia ou Léo</div>
+
+            <div class="date-row">
+                <div class="line"></div>
+                <div class="date-text">DOMINGO</div>
+                <div class="day-big">15</div>
+                <div class="date-text">MARÇO</div>
+                <div class="line"></div>
+            </div>
+
+            <div class="time">às 17 horas</div>
+
+            <div class="footer-icons">
+                <a href="#" class="icon-box">
+                    <div class="icon-circle"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt=""></div>
+                    <span class="icon-label">Confirmar<br>Presença</span>
+                </a>
+                <a href="#" class="icon-box">
+                    <div class="icon-circle"><img src="https://cdn-icons-png.flaticon.com/512/1162/1162280.png" alt=""></div>
+                    <span class="icon-label">Sugestões<br>de Presente</span>
+                </a>
+                <a href="#" class="icon-box">
+                    <div class="icon-circle"><img src="https://cdn-icons-png.flaticon.com/512/167/167751.png" alt=""></div>
+                    <span class="icon-label">Sugestões<br>de Cores</span>
+                </a>
+                <a href="#" class="icon-box">
+                    <div class="icon-circle"><img src="https://cdn-icons-png.flaticon.com/512/1865/1865269.png" alt=""></div>
+                    <span class="icon-label">Ver<br>Local</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
