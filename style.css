@@ -1,112 +1,419 @@
-/* Definição das cores baseadas na logo */
-:root {
-    --marrom-escuro: #5c1a1a; /* Tom vinho/marrom principal */
-    --laranja: #f37021;      /* Tom do detalhe da linha */
-    --branco: #ffffff;
-    --bege-claro: #fcf9f7;
-}
-
-* {
+/* ========================================================================
+1. RESET & DEFINIÇÕES GERAIS
+======================================================================== 
+*/
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bege-claro);
-    color: var(--marrom-escuro);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    text-align: center;
+html, body {
+    width: 100%;
+    height: 100%;
     overflow: hidden;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background-color: var(--background-dark);
 }
 
-/* Estilo do Loading */
-#loading-screen {
+/* ========================================================================
+2. VARIÁVEIS PREMIUM (PALETA DE LUXO)
+======================================================================== 
+*/
+:root {
+    --background: #4F200E;
+    --background-dark: #2A0E04; /* Ajustado para maior profundidade */
+    --surface: #5A2813;
+    --card: rgba(96, 48, 26, 0.38); /* Glassmorphism extra refinado */
+    --card-hover: rgba(115, 59, 33, 0.52);
+    --text: #F6F2E9;
+    --text-secondary: #DCCFBE;
+    --gold: #C9A35B;
+    --gold-light: #D8B979;
+    --gold-dark: #A57A35;
+    --border: rgba(246, 242, 233, 0.08);
+    --border-hover: rgba(201, 163, 91, 0.25);
+    --shadow: rgba(0, 0, 0, 0.35);
+}
+
+/* ========================================================================
+3. BACKGROUND COM DEGRADÊ ANIMADO PREMIUM & GLOWS
+======================================================================== 
+*/
+.luxury-background {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--branco);
+    z-index: -1;
+    overflow: hidden;
+    /* Degradê suave principal */
+    background: linear-gradient(135deg, #1f0700, #361205, #4f200e, #2a0e04);
+    background-size: 400% 400%;
+    animation: luxuryGradient 18s ease infinite;
+}
+
+/* Transição de cores do gradiente de fundo */
+@keyframes luxuryGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Brilho radial de preenchimento ambiente */
+.radial-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 50% 30%, rgba(201, 163, 91, 0.06) 0%, rgba(0, 0, 0, 0) 70%);
+    pointer-events: none;
+}
+
+/* Orbes de Luz Ambiente Animados (Luxo Fluido) */
+.ambient-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    -webkit-filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+    mix-blend-mode: screen;
+}
+
+.orb-1 {
+    top: -10%;
+    left: -10%;
+    width: 380px;
+    height: 380px;
+    background: var(--gold-light);
+    animation: floatOrb1 22s infinite alternate ease-in-out;
+}
+
+.orb-2 {
+    bottom: -15%;
+    right: -10%;
+    width: 440px;
+    height: 440px;
+    background: var(--background);
+    animation: floatOrb2 26s infinite alternate ease-in-out;
+}
+
+.orb-3 {
+    top: 35%;
+    left: 25%;
+    width: 280px;
+    height: 280px;
+    background: var(--gold-dark);
+    opacity: 0.05;
+    animation: floatOrb3 18s infinite alternate ease-in-out;
+}
+
+/* Animações dos Orbes de Luz */
+@keyframes floatOrb1 {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(60px, 40px) scale(1.1); }
+}
+@keyframes floatOrb2 {
+    0% { transform: translate(0, 0) scale(1.15); }
+    100% { transform: translate(-80px, -50px) scale(0.95); }
+}
+@keyframes floatOrb3 {
+    0% { transform: translate(0, 0) scale(0.9); }
+    100% { transform: translate(-30px, 60px) scale(1.05); }
+}
+
+/* ========================================================================
+4. CONTAINER DO LAYOUT (MÁX 520PX)
+======================================================================== 
+*/
+.container {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 520px;
+    height: 100vh;
+    margin: 0 auto;
+    padding: 32px 24px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Wrapper unificado do conteúdo */
+.content-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+/* ========================================================================
+5. HERO SECTION (LOGO AMPLIADA & TIPOGRAFIA PREMIUM SERIF)
+======================================================================== 
+*/
+.hero {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 24px;
+}
+
+/* Logo wrapper ampliado para dar máximo destaque à marca */
+.logo-wrapper {
+    display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-
-.loader {
-    border: 5px solid #f3f3f3;
-    border-top: 5px solid var(--laranja);
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin-bottom: 15px;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Conteúdo */
-.container {
-    padding: 20px;
-    max-width: 600px;
-}
-
-.logo {
-    width: 100%;
-    max-width: 400px; /* Ajuste conforme necessário */
-    height: auto;
-    margin-bottom: 30px;
-    animation: fadeIn 1.5s ease;
-}
-
-h1 {
-    font-size: 1.8rem;
-    margin-bottom: 10px;
-}
-
-p {
-    margin-bottom: 30px;
-    font-size: 1.1rem;
-    opacity: 0.8;
-}
-
-/* Botão Instagram */
-.btn-instagram {
-    display: inline-block;
-    background-color: var(--marrom-escuro);
-    color: var(--branco);
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: bold;
+    margin-bottom: 16px;
+    height: 150px; /* Aumentado de 70px para 110px (Logo maior) */
     transition: all 0.3s ease;
-    border: 2px solid transparent;
 }
 
-.btn-instagram i {
-    margin-right: 8px;
-    font-size: 1.2rem;
+.logo-img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
 }
 
-.btn-instagram:hover {
-    background-color: transparent;
-    color: var(--marrom-escuro);
-    border-color: var(--marrom-escuro);
-    transform: translateY(-3px);
+.logo-text-fallback {
+    font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+    font-size: 34px;
+    letter-spacing: 10px;
+    color: var(--gold);
+    font-weight: 300;
 }
 
-/* Animação suave de entrada */
+/* Tipografia de altíssimo requinte (Não manuscrita) */
+.brand-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px; /* Sensação clássica e de altíssimo luxo */
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.brand-subtitle {
+    font-size: 10px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    letter-spacing: 1.5px;
+    text-transform: uppercase; /* Estilo editorial */
+    opacity: 0.85;
+}
+
+/* Divisor sutil e elegante */
+.sub-divider {
+    width: 40px;
+    height: 1px;
+    background: var(--gold);
+    margin: 12px auto 0 auto;
+    opacity: 0.4;
+}
+
+/* ========================================================================
+6. CARDS (CARTÕES PREMIUM COM GLASSMORPHISM)
+======================================================================== 
+*/
+.cards-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.premium-card {
+    display: block;
+    width: 100%;
+    text-decoration: none;
+    position: relative;
+    border-radius: 16px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Brilho interno do Card */
+.card-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(201, 163, 91, 0.12) 0%, rgba(0,0,0,0) 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.premium-card:hover .card-glow {
+    opacity: 1;
+}
+
+.premium-card:hover {
+    transform: translateY(-2px) scale(1.012);
+    background: var(--card-hover);
+    border-color: var(--border-hover);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+}
+
+.card-content {
+    display: flex;
+    align-items: center;
+    padding: 16px 18px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Ícones */
+.icon-box {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(246, 242, 233, 0.04);
+    border-radius: 10px;
+    border: 1px solid rgba(246, 242, 233, 0.05);
+    margin-right: 14px;
+}
+
+.icon-gradient {
+    font-size: 16px;
+    color: var(--gold-light);
+}
+
+/* Conteúdo de Texto */
+.text-box {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 14.5px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 2px;
+    letter-spacing: -0.1px;
+}
+
+.card-desc {
+    font-size: 12px;
+    font-weight: 300;
+    color: var(--text-secondary);
+}
+
+/* Seta Indicativa */
+.arrow-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    opacity: 0.4;
+    transition: all 0.3s ease;
+}
+
+.arrow-icon {
+    font-size: 11px;
+    color: var(--text);
+    transition: transform 0.3s ease;
+}
+
+.premium-card:hover .arrow-box {
+    opacity: 0.9;
+}
+
+.premium-card:hover .arrow-icon {
+    transform: translateX(3px);
+    color: var(--gold);
+}
+
+/* ========================================================================
+7. FOOTER (RODAPÉ MINIMALISTA)
+======================================================================== 
+*/
+.footer {
+    text-align: center;
+    width: 100%;
+    padding-top: 14px;
+}
+
+.copyright {
+    font-size: 10px;
+    color: rgba(246, 242, 233, 0.35);
+    font-weight: 300;
+    margin-bottom: 3px;
+}
+
+.developer {
+    font-size: 10.5px;
+    color: rgba(246, 242, 233, 0.45);
+    font-weight: 300;
+}
+
+.dev-link {
+    color: var(--gold-light);
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+.dev-link:hover {
+    color: var(--gold);
+}
+
+/* ========================================================================
+8. ANIMAÇÕES PREMIUM (AESTHETIC FADE IN)
+======================================================================== 
+*/
 @keyframes fadeIn {
-    from { opacity: 0; transform: scale(0.9); }
-    to { opacity: 1; transform: scale(1); }
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* ========================================================================
+9. RESPONSIVIDADE & AJUSTES DE TELA
+======================================================================== 
+*/
+@media (max-height: 650px) {
+    .container {
+        padding: 16px 20px;
+    }
+    .hero {
+        margin-bottom: 12px;
+    }
+    .logo-wrapper {
+        height: 80px; /* Compacta suavemente em telas muito pequenas */
+        margin-bottom: 8px;
+    }
+    .brand-title {
+        font-size: 26px;
+    }
+    .cards-wrapper {
+        gap: 10px;
+    }
+    .card-content {
+        padding: 12px 14px;
+    }
 }
